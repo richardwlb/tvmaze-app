@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../storeConfig/store';
@@ -55,12 +56,13 @@ const initialState: TvShowState = {
     runtime: 0,
     status: ''
   },
-  status: 'loading'
+  status: 'loading',
+  search: ''
 };
 
 export const fetchAsync = createAsyncThunk(
   'tvShow/fetchTvShow',
-  async (search: string = 'powerpuff') => {
+  async (search: string) => {
     const response = await api.get(`/search/shows?q=${search}`);
     const tvShows = response?.data.map((item: any) => item.show);
 
@@ -70,7 +72,7 @@ export const fetchAsync = createAsyncThunk(
       tvShows[i].episodes = response.data;
     }
 
-    return tvShows;
+    return { tvShows, search };
   }
 );
 
@@ -78,9 +80,6 @@ export const getEpisode = createAsyncThunk(
   'tvShow/getEpisote',
   async (id: number) => {
     const response = await api.get(`/episodes/${id}`);
-
-    console.log('*- response.data', response.data);
-
     if (response.data) return response.data;
   }
 );
@@ -95,8 +94,11 @@ export const tvShowSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAsync.fulfilled, (state, action) => {
+        console.log('*- state', state);
+
         state.status = 'idle';
-        state.tvShows = action.payload;
+        state.tvShows = action.payload.tvShows;
+        state.search = action.payload.search;
       })
       .addCase(getEpisode.pending, (state) => {
         state.episode.status = 'loading';

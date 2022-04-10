@@ -34,6 +34,7 @@ type TvShowState = {
   tvShows: TvShow[];
   status: string;
   episode: Episode;
+  search: string;
 };
 
 type TvShowAction = {
