@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../storeConfig/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import dateFormat from '../../helpers/dateFormat';
+import { Button, Rating } from '@mui/material';
 
 const EpisodeDetails = () => {
   const episode = useAppSelector(selectEpisode);
@@ -29,6 +30,9 @@ const EpisodeDetails = () => {
       />
       <S.ShowDesc>
         <h1>{episode.name}</h1>
+        {episode.rating.average && (
+          <Rating value={episode.rating.average / 2} readOnly />
+        )}
         <div
           dangerouslySetInnerHTML={{
             __html: `${episode.summary}`
@@ -48,7 +52,14 @@ const EpisodeDetails = () => {
           <strong>Release: </strong>
           {dateFormat(episode.airdate)}
         </div>
+        <div>
+          <strong>Duration: </strong>
+          {episode.runtime}
+        </div>
       </S.ShowDesc>
+      <Button onClick={() => navigate(-1)} variant="contained">
+        Back
+      </Button>
     </S.Wrapper>
   );
 };

@@ -21,6 +21,6 @@ export const ShowDesc = styled.div`
 export const imageEpisode = styled.img`
   max-width: 100%;
   max-height: 28rem;
-  box-shadow: 0px 40px 20px rgba(0.25, 0.25, 0.25, 0.25);
+  box-shadow: 0px 15px 20px rgba(0.25, 0.25, 0.25, 0.25);
   border-radius: 4px;
 `;

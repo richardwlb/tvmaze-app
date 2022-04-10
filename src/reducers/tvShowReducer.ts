@@ -14,6 +14,9 @@ const initialState: TvShowState = {
         medium: '',
         original: ''
       },
+      rating: {
+        average: 0
+      },
       episodes: [
         {
           id: 1,
@@ -26,6 +29,10 @@ const initialState: TvShowState = {
             original: ''
           },
           summary: '',
+          rating: {
+            average: 0
+          },
+          runtime: 0,
           status: ''
         }
       ]
@@ -42,6 +49,10 @@ const initialState: TvShowState = {
     number: 0,
     season: 0,
     summary: '',
+    rating: {
+      average: 0
+    },
+    runtime: 0,
     status: ''
   },
   status: 'loading'

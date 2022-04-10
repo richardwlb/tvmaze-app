@@ -6,6 +6,9 @@ export interface TvShow {
     medium: string;
     original: string;
   };
+  rating: {
+    average: number;
+  };
   episodes: Episode[];
 }
 
@@ -20,6 +23,10 @@ type Episode = {
     original: string;
   };
   summary: string;
+  rating: {
+    average: number;
+  };
+  runtime: number;
   status: string;
 };
 

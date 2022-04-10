@@ -1,5 +1,6 @@
 import { TvShow } from '../../type';
 import EpisodeList from '../EpisodeList';
+import { Rating } from '@mui/material';
 import * as S from './ShowCard.styles';
 
 interface TvShowProps {
@@ -16,6 +17,9 @@ const ShowCard = ({ tvShow }: TvShowProps) => {
       />
       <S.ShowDesc>
         <h2>{tvShow.name}</h2>
+        {tvShow.rating.average && (
+          <Rating value={tvShow.rating.average / 2} readOnly />
+        )}
         <div
           style={{ overflow: 'auto' }}
           dangerouslySetInnerHTML={{ __html: tvShow.summary }}
