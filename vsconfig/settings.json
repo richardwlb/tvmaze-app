@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "npm.packageManager": "yarn"
+}
