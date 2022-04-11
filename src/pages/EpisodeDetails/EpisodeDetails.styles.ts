@@ -24,3 +24,7 @@ export const imageEpisode = styled.img`
   box-shadow: 0px 15px 20px rgba(0.25, 0.25, 0.25, 0.25);
   border-radius: 4px;
 `;
+
+export const DivCentral = styled.div`
+  line-height: 10rem;
+`;

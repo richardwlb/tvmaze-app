@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap');
 
-:root {
-  --primary-color: #b6b3b3;
-  --primary-hover-color: #a74b4b;
-  --dark-color: #263238;
-  --secondary-color: #f3f1f1;
-  --light-color: #F5F5F5;
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -29,6 +21,7 @@
 }
 
 html, body {
+  height: 100%;
   margin: 0;
   padding:0;
 }

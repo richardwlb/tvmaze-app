@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import dateFormat from '../../helpers/dateFormat';
-import { useAppDispatch } from '../../storeConfig/hooks';
 import { Episode } from '../../type';
 import * as S from './EpisodeList.styles';
 
@@ -10,7 +9,6 @@ interface EpisodeProps {
 
 const EpisodeList = ({ episodes }: EpisodeProps) => {
   const orderedEpisodes = [...episodes];
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   orderedEpisodes.sort((a, b) => {
@@ -21,7 +19,6 @@ const EpisodeList = ({ episodes }: EpisodeProps) => {
   });
 
   const handleClick = (id: number) => {
-    // dispatch(setEpisodeDetails(episode));
     navigate(`/episode/${id}`);
   };
 

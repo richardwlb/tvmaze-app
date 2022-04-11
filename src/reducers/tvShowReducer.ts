@@ -94,8 +94,6 @@ export const tvShowSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAsync.fulfilled, (state, action) => {
-        console.log('*- state', state);
-
         state.status = 'idle';
         state.tvShows = action.payload.tvShows;
         state.search = action.payload.search;

@@ -13,7 +13,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
   const tvShow = useAppSelector(selectTvShows);
-  const [value, setValue] = useState(tvShow.search);
+  const [value, setValue] = useState(tvShow.search || 'Powerpuff');
 
   const handleChange = (inputValue: string) => {
     if (value === inputValue) return;

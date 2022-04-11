@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../storeConfig/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import dateFormat from '../../helpers/dateFormat';
-import { Button, Rating } from '@mui/material';
+import { Button, CircularProgress, Rating } from '@mui/material';
 
 const EpisodeDetails = () => {
   const episode = useAppSelector(selectEpisode);
@@ -18,48 +18,52 @@ const EpisodeDetails = () => {
     dispatch(getEpisode(Number(id)));
   }, []);
 
-  if (episode.status === 'loading') {
-    return <div>loading...</div>;
-  }
-
   return (
     <S.Wrapper>
-      <S.imageEpisode
-        src={episode.image?.original}
-        alt={`Cover from episode ${episode.name} `}
-      />
-      <S.ShowDesc>
-        <h1>{episode.name}</h1>
-        {episode.rating.average && (
-          <Rating value={episode.rating.average / 2} readOnly />
-        )}
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `${episode.summary}`
-          }}
-        />
-        <div>
-          <strong>Season: </strong>
-          {episode.season}
-        </div>
+      {episode.status === 'loading' ? (
+        <S.DivCentral>
+          <CircularProgress />
+        </S.DivCentral>
+      ) : (
+        <>
+          <S.imageEpisode
+            src={episode.image?.original}
+            alt={`Cover from episode ${episode.name} `}
+          />
+          <S.ShowDesc>
+            <h1>{episode.name}</h1>
+            {episode.rating.average && (
+              <Rating value={episode.rating.average / 2} readOnly />
+            )}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${episode.summary}`
+              }}
+            />
+            <div>
+              <strong>Season: </strong>
+              {episode.season}
+            </div>
 
-        <div>
-          <strong>Episode: </strong>
-          {episode.number}
-        </div>
+            <div>
+              <strong>Episode: </strong>
+              {episode.number}
+            </div>
 
-        <div>
-          <strong>Release: </strong>
-          {dateFormat(episode.airdate)}
-        </div>
-        <div>
-          <strong>Duration: </strong>
-          {episode.runtime}
-        </div>
-      </S.ShowDesc>
-      <Button onClick={() => navigate(-1)} variant="contained">
-        Back
-      </Button>
+            <div>
+              <strong>Release: </strong>
+              {dateFormat(episode.airdate)}
+            </div>
+            <div>
+              <strong>Duration: </strong>
+              {episode.runtime}
+            </div>
+          </S.ShowDesc>
+          <Button onClick={() => navigate(-1)} variant="contained">
+            Back
+          </Button>
+        </>
+      )}
     </S.Wrapper>
   );
 };
