@@ -16,7 +16,7 @@ const EpisodeDetails = () => {
 
   useEffect(() => {
     dispatch(getEpisode(Number(id)));
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <S.Wrapper>
